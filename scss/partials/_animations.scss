@@ -1,0 +1,179 @@
+   
+@keyframes move {
+    0% {
+        transform: translateX(600px);  
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveL {
+    0% {
+        transform: translateX(-600px) translateY(30%);  
+    }
+    100% {
+        transform: translateX(0) translateY(30%);
+    }
+}
+    /* Slide Right */
+    @-webkit-keyframes slideInRight {
+      from {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+      }
+
+      to {
+        -webkit-transform: translate3d(0%, 0, 0);
+        transform: translate3d(0%, 0, 0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+      }
+
+      to {
+        -webkit-transform: translate3d(0%, 0, 0);
+        transform: translate3d(0%, 0, 0);
+      }
+    }
+
+    .slideInRight {
+      -webkit-animation-name: slideInRight;
+      animation-name: slideInRight;
+    }
+
+     
+
+     /* Bounce */
+
+    @-webkit-keyframes bounce { 
+            0% {
+        transform: translateY(0);
+        } 
+        50% {
+            transform: translateY(6px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+         } 
+         
+     @keyframes bounce { 
+       0% {
+        transform: translateY(0);
+        } 
+        50% {
+            transform: translateY(6px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+     }
+     
+     .bounce { 
+        -webkit-animation-name: bounce; 
+        animation-name: bounce; 
+     }
+
+
+     @keyframes zoom { 
+        0% {
+          transform: translateY(-490px) scale(1.6);
+         } 
+         
+         100% {
+            transform: translateY(50px) scale(0.71);
+         }
+      }
+
+// Animations variables
+$aos-distance: 100px !default;
+$bgRight: animatedBackgroundR 4s linear infinite;
+$bgLeft: animatedBackgroundL 3s linear infinite;
+$delay: 2s;
+$fadeIn: fadeIn 3.5s cubic-bezier(0, 0.03, 0, 0.02);
+$reveal: reveal cubic-bezier(0.785, 0.135, 0.15, 0.86) 1s forwards;
+$rotateIn: rotateIn 3s cubic-bezier(0, 0.03, 0, 0.02);
+$scale: 1.0 !default;
+$spin: spin 3s linear infinite;
+$zoom: zoomInDown 2s cubic-bezier(0, 0.03, 0, 0.02);
+$zooms: zoomInDowns 1.5s cubic-bezier(0, 0.03, 0, 0.02);
+
+@mixin keyframe($keyframe-name) {
+  @-webkit-keyframes #{$keyframe-name} {
+   @content;
+  }
+  @-moz-keyframes #{$keyframe-name} {
+   @content;
+  }
+  @keyframes #{$keyframe-name} {
+   @content;
+  }
+ }
+
+ // Use mixin for generating keyframes for animations
+
+
+//  Animate cloud background
+@include keyframe (animatedBackgroundL){
+    from { background-position-x: 100%; }
+    to { background-position-x: 0; }
+}
+
+@include keyframe (animatedBackgroundR){
+    from { background-position-x: 0; }
+    to { background-position-x: 100%; }
+}
+
+//  Fade In 
+
+@include keyframe(fadeIn) {
+  from { opacity: 0; }
+  to { opacity: 1;}
+}
+
+//  Rotate In
+
+@include keyframe(rotateIn) {
+    0% { opacity: 0; } 
+    75% { opacity: 0; transform: rotate(0deg) scale(0) translateX(-25px); } 
+  100% { opacity: 1; transform:  rotate(359deg) scale(1) translateX(-25px); }
+  }
+  
+//  Reveal
+
+@include keyframe(reveal) {
+    from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+   }
+      
+   //  Spin
+
+@include keyframe(spin) {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+   }
+
+//  Zoom In Down
+
+@include keyframe(zoomInDown) {
+  0% { transform: translateY(-490px) scale(1.6); } 
+  100% { transform: translateY(50px) scale(0.76); }
+ }
+ @include keyframe(zoomInDowns) {
+    0% { transform: translateY(-490px) scale(1.9); } 
+    100% { transform: translateY(50px) scale(1.5); }
+   }
+
+   
+
