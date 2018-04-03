@@ -1,11 +1,22 @@
 // Pokemon Card colours
 
 $card-color-1: #ef843c;
-$card-color-2: #a67c00;
-$card-color-3: #a67c00;
+$card-color-2: rgba(28, 16, 32, 0.53);
+$card-color-3:  rgba(28, 16, 32, 0.22);
 .red{
   background-color:  #e33118 !important;
 }
 .or{
   background-color:  #ef843c !important;
 }
+.card-title {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  background-color: rgba(28, 16, 32, 0.53);
+  padding: 1px 0 10px;
+  border: 1px solid rgba(28, 16, 32, 0.53);
+  border-radius: 30px;
+}
+

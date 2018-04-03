@@ -6,6 +6,17 @@
   background-color: #ef843c !important;
 }
 
+.card-title {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  background-color: rgba(28, 16, 32, 0.53);
+  padding: 1px 0 10px;
+  border: 1px solid rgba(28, 16, 32, 0.53);
+  border-radius: 30px;
+}
+
 @keyframes move {
   0% {
     transform: translateX(600px);
@@ -357,6 +368,7 @@ img {
 
 .main {
   padding-top: 4em;
+  background-color: rgba(28, 16, 32, 0.22);
 }
 
 #gym {
@@ -375,6 +387,15 @@ section {
   overflow: hidden;
 }
 
+.fr-img {
+  background: url(../images/front_pg.jpg) no-repeat center;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+}
+
 #pokemon_grid {
   text-align: center;
 }
@@ -390,6 +411,39 @@ section {
   box-shadow: none;
   width: auto;
   display: inline-block;
+}
+
+#pokemon_grid .card .card-title {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  background-color: rgba(28, 16, 32, 0.53);
+  padding: 1px 0 10px;
+}
+
+#pokemon_grid .card .card-reveal {
+  color: #000;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  padding: 0;
+}
+
+#pokemon_grid .card .card-reveal .card-title {
+  text-transform: uppercase;
+  background-color: rgba(28, 16, 32, 0.93);
+  padding: 5px 10px 10px;
+  border: none;
+  border-radius: 0;
+}
+
+#pokemon_grid .card .card-reveal .stats-title {
+  background-color: rgba(28, 16, 32, 0.93);
+  padding: 5px 10px 6px;
+  border: none;
+  color: #fff;
+  text-transform: uppercase;
 }
 
 #pokemon_grid .card .dark,
