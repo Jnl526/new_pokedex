@@ -366,6 +366,32 @@ img {
   min-height: 100vh;
 }
 
+#loading_page {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+  background: -moz-linear-gradient(top, #99dbfe 0%, white 77%);
+  background: -webkit-linear-gradient(top, #99dbfe 0%, white 77%);
+  background: linear-gradient(to bottom, #99dbfe 0%, white 77%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99dbfe', endColorstr='#ffffff',GradientType=0 );
+  z-index: 1;
+}
+
+#loading_page .logo-wrapper .logo {
+  position: absolute;
+  bottom: 61px;
+  z-index: 1;
+  width: 200px;
+  right: 0;
+  transform: translateX(-25px) scaleX(0);
+  transform-origin: left;
+  animation: reveal cubic-bezier(0.785, 0.135, 0.15, 0.86) 1s forwards;
+  animation-delay: 2s;
+}
+
 .main {
   padding-top: 4em;
   background-color: rgba(28, 16, 32, 0.22);
@@ -383,7 +409,7 @@ img {
 
 section {
   width: 100%;
-  height: auto;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -394,6 +420,65 @@ section {
   position: absolute;
   z-index: 1;
   width: 100%;
+}
+
+.backimg {
+  background: url(../images/floating_clouds_bk.png) repeat-x;
+  background-size: cover;
+  background-position: 0 0;
+  height: 100vh;
+  position: relative;
+  animation: animatedBackgroundR 4s linear infinite;
+}
+
+.frontimg {
+  background: url(../images/clouds.png);
+  background-position: 0px 100%;
+  background-repeat: repeat-x;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  animation: animatedBackgroundL 3s linear infinite;
+}
+
+.frontimg img {
+  position: absolute;
+  bottom: -8px;
+}
+
+.midimg {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+}
+
+.midimg .pokeball_wrapper {
+  text-align: center;
+}
+
+.midimg .pokeball_wrapper .pokeball {
+  animation: fadeIn 3.5s cubic-bezier(0, 0.03, 0, 0.02);
+}
+
+.midimg .ground_wrapper {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 50px;
+  transform: translateY(50px) scale(0.76);
+  animation: zoomInDown 2s cubic-bezier(0, 0.03, 0, 0.02);
+}
+
+.midimg .ground_wrapper .ground,
+.midimg .ground_wrapper .pokemon {
+  position: absolute;
+  top: 0;
+  animation: bounce 2s infinite;
 }
 
 #pokemon_grid {
@@ -438,12 +523,43 @@ section {
   border-radius: 0;
 }
 
-#pokemon_grid .card .card-reveal .stats-title {
+#pokemon_grid .card .card-reveal img.thumb {
+  display: flex;
+  float: left;
+  width: 64%;
+  vertical-align: top;
+  position: relative;
+  margin-top: -26px;
+  padding: 1px 0;
+}
+
+#pokemon_grid .card .card-reveal .stats .stats-title,
+#pokemon_grid .card .card-reveal .stats .dropdown-trigger {
   background-color: rgba(28, 16, 32, 0.93);
   padding: 5px 10px 6px;
   border: none;
   color: #fff;
   text-transform: uppercase;
+}
+
+#pokemon_grid .card .card-reveal .stats li {
+  display: inline-block;
+  text-align: center;
+  padding: 9px 11px;
+  color: #fff;
+  height: 62px;
+}
+
+#pokemon_grid .card .card-reveal .stats .hp {
+  background: #695774;
+}
+
+#pokemon_grid .card .card-reveal .stats .attack {
+  background: #34273d;
+}
+
+#pokemon_grid .card .card-reveal .stats .defense {
+  background: #321e36;
 }
 
 #pokemon_grid .card .dark,
