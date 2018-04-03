@@ -23,11 +23,13 @@ class pokeTrainer{
 }
 
 
+
 let jan = new pokeTrainer();
 let dan = new pokeTrainer();
     console.log(jan);
     console.log(dan);
 	
+
 
 
     let pokeDex = function(myTrainer)  {
@@ -83,7 +85,54 @@ let dan = new pokeTrainer();
         }	 
     }
 
+    let pokeDexTwo = function(myTrainer1)  {
+	
+        for ( let i = 0; i < myTrainer1.pokemon.length; i++) {
+                let pokeMon = myTrainer1.pokemon[i],
+                    // create carousel
+                    newDivItem = $(`<div class='carousel-item' href='#${i}'></div>`),
+                    newDivCard = $(`<div class='card large'>${pokeMon.id}</div>`),
+                    newDivTypes = $(`<ul class='types'></ul>`),
+                    newDivContent = $(`<div class='card-content'></div>`);
     
+                  // create types list
+            for ( let j = 0; j < myTrainer1.pokemon[i].types.length; j++){
+                  let pokeeType = $(`<li class="${myTrainer1.pokemon[i].types[j]}">${myTrainer1.pokemon[i].types[j]}</li>`);
+                $(newDivTypes ).append(pokeeType);
+    
+                // add class to types then add image in css
+                $( " li:contains('fire')" ).addClass('fire');
+                $( " li:contains('dark')" ).addClass('dark');	
+            }
+                  
+                      pokeeName = $(`<h5 class="card-title">${pokeMon.name}</h5>`),
+                      pokeeImg = $(`<div class='card-image'><a href='pgid228.html'><img id=${pokeMon.id} src='"  "'></a></div>`),
+                      pokeeIcons = $("<ul class='p-icons'><li><i class='far fa-heart'></i></li><li><i class='swap'></i></li><li><i class='collection'></i></li></ul>"),
+                      
+                        // pokeeType = $("<div class='types'><h6>" + pokeMon.types + "</h6></div>");
+                        // pokeeAbility = $("<div class='abilities'><h6>" + pokeMon.abilities + "</h6></div>");
+                        // pokeeHp = $("<div class='hp'><h6>" + pokeMon.hp + "</h6></div>");
+                        // pokeeAttack = $("<div class='attack'><h6>" + pokeMon.attack + "</h6></div>");
+                        // pokeeDefense = $("<div class='defense'><h6>" + pokeMon.defense + "</h6></div>");
+    
+            //Create individual pokemon information
+            $('#pokemon_grid .carousel').append(newDivItem);
+            $(newDivItem).append(newDivCard);
+            $(newDivCard).append(newDivTypes);
+            $(newDivCard).append(pokeeImg).append(newDivContent);
+            $(newDivContent).append(pokeeName).append(pokeeIcons);
+        
+        
+            $('.dropdown-trigger').dropdown();
+            $('.carousel').carousel();	
+            $('.modal').modal();	
+            //Replace selected pokemon images
+            $('#142').attr("src","images/arcanine1.png");
+            $('#429').attr("src","images/houndour2.png");
+            $('#452').attr("src","images/mightyena2.png");
+        }	 
+    }
+
 
 //Pulling data from the pokemon api by id and populating with selected data by creating a function which call the api by id
 
@@ -111,12 +160,9 @@ function getApokemon(id, pokeTrainer){
 			 types.push( data.types[i].type.name);
 		}  
 		
-		let poke = new pokeData(id, name, image, hp,attack, defense, abilities,types);  
+		 let poke = new pokeData(id,name,image,hp,attack,defense,abilities,types);  
 		
-        pokeTrainer.addPokemon(poke);
-        // newTrainer1.addPokemon(poke);
-		
-		//  console.log(poke);
+
 
 },
         error: function(error){
@@ -139,7 +185,31 @@ if(!localStorage.getItem("myPokemonArray")){
 
 
 
+//this does not add extra information to pokeData, generates a random number, when logged returns 2
 
+let randomPokemon = Math.floor(Math.random() * 4);
+console.log(randomPokemon);
+
+//undefined
+
+var pokemon = pokeData[Math.floor(Math.random() * pokeData.length)];
+console.log(pokemon)
+
+
+
+//these add an extra set of pokemon to pokeData
+// var randomPokemon = [getApokemon(142),getApokemon(429),getApokemon(452)/*not sure if this is the correct calls*/];
+// var pickPokemon = function () {
+// var pokemonRandom = randomPokemon[Math.floor(Math.random() * 4)];
+// console.log(pokemonRandom);
+// };
+
+
+// var randomPokemon1 = [getApokemon(228),getApokemon(59),getApokemon(262)/*not sure if this is the correct calls*/];
+// var pickPokemon1 = function () {
+// var pokemonRandom1 = randomPokemon1[Math.floor(Math.random() * 4)];
+// console.log(randomPokemon1);
+// };
 
 $(window).load(function(){
     setTimeout(function(){ $('.fr-img').fadeOut() }, 1000);
