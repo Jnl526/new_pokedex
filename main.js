@@ -18,13 +18,16 @@ class pokeTrainer{
         this.pokemon = [];
     }
     addPokemon(a){
-        this.pokemon.push(a);
-    }
+		this.pokemon.push(a);
+	}
 }
-let newTrainer = new pokeTrainer(getApokemon(228), getApokemon(59), getApokemon(262));
-let newTrainer1 = new pokeTrainer(getApokemon(142), getApokemon(429), getApokemon(452));
-	console.log(newTrainer);
-	console.log(newTrainer1);
+
+
+let jan = new pokeTrainer();
+let dan = new pokeTrainer();
+    console.log(jan);
+    console.log(dan);
+	
 
 
     let pokeDex = function(myTrainer)  {
@@ -33,10 +36,10 @@ let newTrainer1 = new pokeTrainer(getApokemon(142), getApokemon(429), getApokemo
                 let pokeMon = myTrainer.pokemon[i],
                     // create carousel
                     newDivItem = $(`<div class='carousel-item' href='#${i}'></div>`),
-                    newDivCard = $(`<div class='card large'>${pokeMon.id}</div>`),
+                    newDivCard = $(`<div class='card large'><div class="card-title"><p>${pokeMon.id}</p><h6>${pokeMon.name}</h6></div>`),
                     newDivTypes = $(`<ul class='types'></ul>`),
                     newDivContent = $(`<div class='card-content'></div>`),
-                    newDivReveal = $(`<div class='card-reveal'><span class="card-title ">${pokeMon.name}<i class="material-icons right">close</i></span></div>`);;
+                    newDivReveal = $(`<div class='card-reveal'><span class="card-title ">${pokeMon.name}<i class="material-icons right">close</i></span></div>`);
     
                   // create types list
             for ( let j = 0; j < myTrainer.pokemon[i].types.length; j++){
@@ -48,12 +51,12 @@ let newTrainer1 = new pokeTrainer(getApokemon(142), getApokemon(429), getApokemo
                 $( " li:contains('dark')" ).addClass('dark');	
             }
                   
-                      pokeeName = $(`<h5 class="card-title">${pokeMon.name}</h5>`),
+                    //   pokeeName = $(``),
                       pokeeImg = $(`<div class='card-image'><img class="activator" id=${pokeMon.id} src='"  "'></div>`);
-                      
-                        // pokeeType = $("<div class='types'><h6>" + pokeMon.types + "</h6></div>");
+                      pokeeImgThumb = $(`<img class="thumb" id=${pokeMon.id} src='${pokeMon.image}'><p>${pokeMon.id}</p>`);
+                    pokeeStats = $(`<div class='stats'><p class="stats-title">Stats</p><p class='hp'>HP: ${pokeMon.hp}"</p><p class='attack'>Attack: ${pokeMon.attack}"</p><p class='defense'>Defense: ${pokeMon.defense}"</p></div>`);
                         // pokeeAbility = $("<div class='abilities'><h6>" + pokeMon.abilities + "</h6></div>");
-                        // pokeeHp = $("<div class='hp'><h6>" + pokeMon.hp + "</h6></div>");
+                       
                         // pokeeAttack = $("<div class='attack'><h6>" + pokeMon.attack + "</h6></div>");
                         // pokeeDefense = $("<div class='defense'><h6>" + pokeMon.defense + "</h6></div>");
     
@@ -61,8 +64,10 @@ let newTrainer1 = new pokeTrainer(getApokemon(142), getApokemon(429), getApokemo
             $('#pokemon_grid .carousel').append(newDivItem);
             $(newDivItem).append(newDivCard);
             $(newDivCard).append(newDivTypes);
-            $(newDivCard).append(pokeeImg).append(newDivContent).append(newDivReveal);;
-            $(newDivContent).append(pokeeName);
+            $(newDivReveal).append(pokeeImgThumb);
+            $(newDivCard).append(pokeeImg).append(newDivContent).append(newDivReveal);
+            
+            $(newDivReveal).append(pokeeStats);
         
         
             $('.dropdown-trigger').dropdown();
@@ -82,7 +87,7 @@ let newTrainer1 = new pokeTrainer(getApokemon(142), getApokemon(429), getApokemo
 
 //Pulling data from the pokemon api by id and populating with selected data by creating a function which call the api by id
 
-function getApokemon(id){
+function getApokemon(id, pokeTrainer){
 	return $.ajax({
 	url: `https://pokeapi.co/api/v2/pokemon/${id}/`,
 	method: 'GET',
@@ -91,7 +96,7 @@ function getApokemon(id){
 		// console.log(data);
 		let id = data.id,
 			name = data.name,
-			image = "",
+			image = data.sprites.front_default,
 			defense = data.stats[3].base_stat,
 			attack = data.stats[4].base_stat,
 			hp = data.stats[5].base_stat,
@@ -108,8 +113,9 @@ function getApokemon(id){
 		
 		let poke = new pokeData(id, name, image, hp,attack, defense, abilities,types);  
 		
-		newTrainer.addPokemon(poke);
-		newTrainer1.addPokemon(poke);
+        pokeTrainer.addPokemon(poke);
+        // newTrainer1.addPokemon(poke);
+		
 		//  console.log(poke);
 
 },
@@ -121,19 +127,23 @@ function getApokemon(id){
 
 
 if(!localStorage.getItem("myPokemonArray")){
-	$.when(getApokemon(228), getApokemon(59), getApokemon(262)).done(function( result ) {
+	$.when(getApokemon(228, jan), getApokemon(59,jan), getApokemon(262, jan), getApokemon(142, dan), getApokemon(452, dan),getApokemon(429, dan)).done(function( result ) {
 		console.log('IM DONE');
-		localStorage.setItem("myPokemonArray", JSON.stringify(newTrainer.pokemon));
-		pokeDex(newTrainer);
+		localStorage.setItem("myPokemonArray", JSON.stringify(pokeTrainer.pokemon));
+		pokeDex(pokeTrainer);
 	});
 } else {
-	newTrainer.pokemon = JSON.parse(localStorage.getItem("myPokemonArray"));
-	pokeDex(newTrainer);
+	pokeTrainer.pokemon = JSON.parse(localStorage.getItem("myPokemonArray"));
+	pokeDex(pokeTrainer);
 }
 
 
 
 
+
+$(window).load(function(){
+    setTimeout(function(){ $('.fr-img').fadeOut() }, 1000);
+  });
 
 
 
