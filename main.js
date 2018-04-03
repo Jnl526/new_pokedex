@@ -29,10 +29,10 @@ let dan = new pokeTrainer();
     console.log(jan);
     console.log(dan);
 	
-let pokeDex = function(jan)  {
+let pokeDex = function(myTrainer)  {
 	
-        for ( let i = 0; i < jan.pokemon.length; i++) {
-                let pokeMon = jan.pokemon[i],
+        for ( let i = 0; i < myTrainer.pokemon.length; i++) {
+                let pokeMon = myTrainer.pokemon[i],
                     // create carousel
                     newDivItem = $(`<div class='carousel-item' href='#${i}'></div>`),
                     newDivCard = $(`<div class='card large'><div class="card-title"><p>${pokeMon.id}</p><h6>${pokeMon.name}</h6></div>`),
@@ -42,7 +42,7 @@ let pokeDex = function(jan)  {
     
                   // create types list
             for ( let j = 0; j < myTrainer.pokemon[i].types.length; j++){
-                  let pokeeType = $(`<li class="${myTrainer.pokemon[i].types[j]}">${jan.pokemon[i].types[j]}</li>`);
+                  let pokeeType = $(`<li class="${myTrainer.pokemon[i].types[j]}">${myTrainer.pokemon[i].types[j]}</li>`);
                 $(newDivTypes ).append(pokeeType);
     
                 // add class to types then add image in css
@@ -121,18 +121,22 @@ function getApokemon(id, pokeTrainer){
 };
 
 
-if(!localStorage.getItem("myPokemonArray")){
-	$.when(getApokemon(228, jan), getApokemon(59,jan), getApokemon(262, jan), getApokemon(142, dan), getApokemon(452, dan),getApokemon(429, dan)).done(function( result ) {
-		console.log('IM DONE');
-		localStorage.setItem("myPokemonArray", JSON.stringify(pokeTrainer.pokemon));
-		pokeDex(pokeTrainer);
-	});
-} else {
-	pokeTrainer.pokemon = JSON.parse(localStorage.getItem("myPokemonArray"));
-	pokeDex(pokeTrainer);
-}
+// if(!localStorage.getItem("myPokemonArray")){
+// 	$.when(getApokemon(228, jan), getApokemon(59,jan), getApokemon(262, jan), getApokemon(142, dan), getApokemon(452, dan),getApokemon(429, dan)).done(function( data ) {
+// 		console.log('IM DONE');
+// 		localStorage.setItem("myPokemonArray", JSON.stringify(pokeTrainer.pokemon));
+// 		pokeDex(jan);
+// 	});
+// } else {
+// 	pokeTrainer.pokemon = JSON.parse(localStorage.getItem("myPokemonArray"));
+// 	pokeDex(jan);
+// }
 
-
+$.when(getApokemon(228, jan), getApokemon(59,jan), getApokemon(262, jan), getApokemon(142, dan), getApokemon(452, dan),getApokemon(429, dan)).done(function( data ) {
+    console.log('IM DONE');
+    pokeDex(jan);
+    pokeDex(dan);
+});
 
 //this does not add extra information to pokeData, generates a random number, when logged returns 2
 
@@ -163,7 +167,6 @@ if(!localStorage.getItem("myPokemonArray")){
 $(window).load(function(){
     setTimeout(function(){ $('.fr-img').fadeOut() }, 1000);
   });
-
 
 
 
