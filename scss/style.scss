@@ -32,6 +32,34 @@ img {
 .full-height {
   min-height: 100vh;
 }
+#loading_page {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  position: absolute;
+    z-index: 1;
+  overflow: hidden;
+  // background: rgb(153,219,254);
+  background: -moz-linear-gradient(top, rgba(153,219,254,1) 0%, rgba(255,255,255,1) 77%);
+  background: -webkit-linear-gradient(top, rgba(153,219,254,1) 0%,rgba(255,255,255,1) 77%);
+  background: linear-gradient(to bottom, rgba(153,219,254,1) 0%,rgba(255,255,255,1) 77%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99dbfe', endColorstr='#ffffff',GradientType=0 );
+  z-index: 1;
+  .logo-wrapper{
+      .logo {
+        position: absolute;
+        bottom: 61px;
+        z-index: 1;
+        width: 200px;
+        right: 0;
+        transform: translateX(-25px) scaleX(0);      
+        transform-origin: left;
+        animation: $reveal;
+        animation-delay: $delay;
+    }
+  }
+    
+}
 .main{
     padding-top: 4em;
     background-color: $card-color-3;
@@ -47,7 +75,7 @@ img {
   }
   section {
     width: 100%;
-    height: auto;
+    height: 100vh;
     // padding: 60px 0;
     overflow: hidden;
   }
@@ -59,6 +87,68 @@ img {
     z-index: 1;
     width: 100%;
   
+}
+
+.backimg {
+  background: $backimagebk;
+  background-size: cover;
+  background-position: 0 0;
+  height: 100vh;
+  position: relative;
+  animation: $bgRight;
+}
+
+.frontimg {
+  background: $frontimagebk;
+  background-position: 0px 100%;
+  background-repeat: repeat-x;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  animation: $bgLeft;
+  img {
+    position: absolute;
+    bottom: -8px;
+  }
+
+}
+
+.midimg {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  .pokeball_wrapper {
+      text-align: center;
+    .pokeball {
+        // position: absolute;
+        // top: 0%;
+        // transform: translateY(30%);
+        animation: $fadeIn;
+        
+    }
+}
+  .ground_wrapper {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 50px;
+    transform: translateY(50px) scale(0.76);
+    animation: $zoom;
+    
+
+    .ground,
+    .pokemon {
+        position: absolute;
+        top: 0;
+        // right: 0;
+        animation: bounce 2s infinite;
+    }
+  } 
 }
   #pokemon_grid {
     text-align: center;
@@ -94,13 +184,41 @@ img {
         border: none;
         border-radius: 0;
        }
-       .stats-title{
+      img.thumb {
+        display: flex;
+        float: left;
+        width: 64%;
+        vertical-align: top;
+        position: relative;
+        margin-top: -26px;
+        padding: 1px 0;
+    }
+    .stats{
+       .stats-title,
+       .dropdown-trigger{
         background-color: rgba(28, 16, 32, 0.93);
         padding: 5px 10px 6px;
         border: none;
         color: #fff;
         text-transform: uppercase;
     }
+    li {
+      display: inline-block;
+    text-align: center;
+    padding: 9px 11px;
+    color: #fff;
+    height: 62px;
+    }
+    .hp{
+      background: #695774;
+    }
+    .attack{
+      background: #34273d;
+    }
+    .defense{
+      background: #321e36;
+    }
+  }
     }
 //   Pokemon Energies
   .dark,
