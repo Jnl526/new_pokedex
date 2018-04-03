@@ -29,7 +29,7 @@ let dan = new pokeTrainer();
     console.log(jan);
     console.log(dan);
 	
-let pokeDex = function(myTrainer)  {
+let pokeDex1 = function(myTrainer)  {
 	
         for ( let i = 0; i < myTrainer.pokemon.length; i++) {
                 let pokeMon = myTrainer.pokemon[i],
@@ -134,8 +134,8 @@ function getApokemon(id, pokeTrainer){
 
 $.when(getApokemon(228, jan), getApokemon(59,jan), getApokemon(262, jan), getApokemon(142, dan), getApokemon(452, dan),getApokemon(429, dan)).done(function( data ) {
     console.log('IM DONE');
-    pokeDex(jan);
-    pokeDex(dan);
+    pokeDex1(jan);
+    pokeDex2(dan);
 });
 
 //this does not add extra information to pokeData, generates a random number, when logged returns 2
