@@ -22,7 +22,7 @@ class pokeTrainer{
     }
 }
 let newTrainer = new pokeTrainer();
-let newTrainer1 = new pokeTrainer(getApokemon(142), getApokemon(429), getApokemon(452));
+let newTrainer1 = new pokeTrainer();
 	console.log(newTrainer);
 	console.log(newTrainer1);
 
@@ -75,10 +75,10 @@ let newTrainer1 = new pokeTrainer(getApokemon(142), getApokemon(429), getApokemo
         }	 
     }
 
-    let pokeDexTwo = function(myTrainer)  {
+    let pokeDexTwo = function(myTrainer1)  {
 	
-        for ( let i = 0; i < myTrainer.pokemon.length; i++) {
-                let pokeMon = myTrainer.pokemon[i],
+        for ( let i = 0; i < myTrainer1.pokemon.length; i++) {
+                let pokeMon = myTrainer1.pokemon[i],
                     // create carousel
                     newDivItem = $(`<div class='carousel-item' href='#${i}'></div>`),
                     newDivCard = $(`<div class='card large'>${pokeMon.id}</div>`),
@@ -86,8 +86,8 @@ let newTrainer1 = new pokeTrainer(getApokemon(142), getApokemon(429), getApokemo
                     newDivContent = $(`<div class='card-content'></div>`);
     
                   // create types list
-            for ( let j = 0; j < myTrainer.pokemon[i].types.length; j++){
-                  let pokeeType = $(`<li class="${myTrainer.pokemon[i].types[j]}">${myTrainer.pokemon[i].types[j]}</li>`);
+            for ( let j = 0; j < myTrainer1.pokemon[i].types.length; j++){
+                  let pokeeType = $(`<li class="${myTrainer1.pokemon[i].types[j]}">${myTrainer1.pokemon[i].types[j]}</li>`);
                 $(newDivTypes ).append(pokeeType);
     
                 // add class to types then add image in css
@@ -117,9 +117,9 @@ let newTrainer1 = new pokeTrainer(getApokemon(142), getApokemon(429), getApokemo
             $('.carousel').carousel();	
             $('.modal').modal();	
             //Replace selected pokemon images
-            $('#59').attr("src","images/arcanine1.png");
-            $('#228').attr("src","images/houndour2.png");
-            $('#262').attr("src","images/mightyena2.png");
+            $('#142').attr("src","images/arcanine1.png");
+            $('#429').attr("src","images/houndour2.png");
+            $('#452').attr("src","images/mightyena2.png");
         }	 
     }
 
@@ -149,11 +149,11 @@ function getApokemon(id){
 			 types.push( data.types[i].type.name);
 		}  
 		
-		let poke = new pokeData(id, name, image, hp,attack, defense, abilities,types);  
+		 let poke = new pokeData(id,name,image,hp,attack,defense,abilities,types);  
 		
 		newTrainer.addPokemon(poke);
 		newTrainer1.addPokemon(poke);
-		//  console.log(poke);
+		//   //console.log();
 
 },
         error: function(error){
@@ -175,8 +175,42 @@ if(!localStorage.getItem("myPokemonArray")){
 }
 
 
+if(!localStorage.getItem("myPokemonArray1")){
+	$.when(getApokemon(142), getApokemon(429), getApokemon(452)).done(function( result ) {
+		console.log('IM DONE');
+		localStorage.setItem("myPokemonArray1", JSON.stringify(newTrainer1.pokemon));
+		pokeDex(newTrainer1);
+	});
+} else {
+	newTrainer1.pokemon = JSON.parse(localStorage.getItem("myPokemonArray1"));
+	pokeDex(newTrainer1);
+}
+
+//this does not add extra information to pokeData, generates a random number, when logged returns 2
+
+let randomPokemon = Math.floor(Math.random() * 4);
+console.log(randomPokemon);
+
+//undefined
+
+var pokemon = pokeData[Math.floor(Math.random() * pokeData.length)];
+console.log(pokemon)
 
 
+
+//these add an extra set of pokemon to pokeData
+// var randomPokemon = [getApokemon(142),getApokemon(429),getApokemon(452)/*not sure if this is the correct calls*/];
+// var pickPokemon = function () {
+// var pokemonRandom = randomPokemon[Math.floor(Math.random() * 4)];
+// console.log(pokemonRandom);
+// };
+
+
+// var randomPokemon1 = [getApokemon(228),getApokemon(59),getApokemon(262)/*not sure if this is the correct calls*/];
+// var pickPokemon1 = function () {
+// var pokemonRandom1 = randomPokemon1[Math.floor(Math.random() * 4)];
+// console.log(randomPokemon1);
+// };
 
 
 
