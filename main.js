@@ -21,8 +21,13 @@ class pokeTrainer{
         this.pokemon.push(a);
     }
 }
+<<<<<<< HEAD
 let newTrainer = new pokeTrainer();
 let newTrainer1 = new pokeTrainer();
+=======
+let newTrainer = new pokeTrainer(getApokemon(228), getApokemon(59), getApokemon(262));
+let newTrainer1 = new pokeTrainer(getApokemon(142), getApokemon(429), getApokemon(452));
+>>>>>>> 5dcc44177a13d2861d066bdcd043bb989d52cf6a
 	console.log(newTrainer);
 	console.log(newTrainer1);
 
@@ -35,7 +40,8 @@ let newTrainer1 = new pokeTrainer();
                     newDivItem = $(`<div class='carousel-item' href='#${i}'></div>`),
                     newDivCard = $(`<div class='card large'>${pokeMon.id}</div>`),
                     newDivTypes = $(`<ul class='types'></ul>`),
-                    newDivContent = $(`<div class='card-content'></div>`);
+                    newDivContent = $(`<div class='card-content'></div>`),
+                    newDivReveal = $(`<div class='card-reveal'><span class="card-title ">${pokeMon.name}<i class="material-icons right">close</i></span></div>`);;
     
                   // create types list
             for ( let j = 0; j < myTrainer.pokemon[i].types.length; j++){
@@ -48,8 +54,7 @@ let newTrainer1 = new pokeTrainer();
             }
                   
                       pokeeName = $(`<h5 class="card-title">${pokeMon.name}</h5>`),
-                      pokeeImg = $(`<div class='card-image'><a href='pgid228.html'><img id=${pokeMon.id} src='"  "'></a></div>`),
-                      pokeeIcons = $("<ul class='p-icons'><li><i class='far fa-heart'></i></li><li><i class='swap'></i></li><li><i class='collection'></i></li></ul>"),
+                      pokeeImg = $(`<div class='card-image'><img class="activator" id=${pokeMon.id} src='"  "'></div>`);
                       
                         // pokeeType = $("<div class='types'><h6>" + pokeMon.types + "</h6></div>");
                         // pokeeAbility = $("<div class='abilities'><h6>" + pokeMon.abilities + "</h6></div>");
@@ -61,20 +66,24 @@ let newTrainer1 = new pokeTrainer();
             $('#pokemon_grid .carousel').append(newDivItem);
             $(newDivItem).append(newDivCard);
             $(newDivCard).append(newDivTypes);
-            $(newDivCard).append(pokeeImg).append(newDivContent);
-            $(newDivContent).append(pokeeName).append(pokeeIcons);
+            $(newDivCard).append(pokeeImg).append(newDivContent).append(newDivReveal);;
+            $(newDivContent).append(pokeeName);
         
         
             $('.dropdown-trigger').dropdown();
             $('.carousel').carousel();	
             $('.modal').modal();	
             //Replace selected pokemon images
-            $('#59').attr("src","images/arcanine1.png");
-            $('#228').attr("src","images/houndour2.png");
-            $('#262').attr("src","images/mightyena2.png");
+            $('#59').attr("src","images/pokemon/arcanine1.png");
+            $('#228').attr("src","images/pokemon/houndour2.png");
+            $('#262').attr("src","images/pokemon/mightyena.png");
+            $('#452').attr("src","images/pokemon/drapion.png");
+            $('#142').attr("src","images/pokemon/aerodactyl.png");
+            $('#429').attr("src","images/pokemon/mismagius.png");
         }	 
     }
 
+<<<<<<< HEAD
     let pokeDexTwo = function(myTrainer1)  {
 	
         for ( let i = 0; i < myTrainer1.pokemon.length; i++) {
@@ -122,6 +131,9 @@ let newTrainer1 = new pokeTrainer();
             $('#452').attr("src","images/mightyena2.png");
         }	 
     }
+=======
+    
+>>>>>>> 5dcc44177a13d2861d066bdcd043bb989d52cf6a
 
 //Pulling data from the pokemon api by id and populating with selected data by creating a function which call the api by id
 

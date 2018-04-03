@@ -1,0 +1,109 @@
+@import 'partials/colors';
+@import 'partials/images';
+@import 'partials/mediaqueries';
+@import 'partials/grid';
+@import 'partials/animations';
+
+body,
+html {
+  height:100%;
+  min-height: 100%;
+}
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+  font-weight: 400;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+a {
+    color: rgb(239, 133, 37);
+  }
+img {
+  border: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.full-height {
+  min-height: 100vh;
+}
+.main{
+    padding-top: 4em;
+  }
+  #gym{
+   background: $gymbk;
+   background-size: cover;
+   background-position: center;
+    .img-wrapper{
+      opacity: 0;
+    }
+  
+  }
+  section {
+    width: 100%;
+    height: auto;
+    // padding: 60px 0;
+    overflow: hidden;
+  }
+
+  #pokemon_grid {
+    text-align: center;
+    .carousel {
+        height: 600px;
+    }
+    .card {
+      position: relative;
+      margin: 0.5rem 1rem 1rem 0;
+      background-color: transparent; 
+      box-shadow: none;
+      width: auto;
+      display: inline-block;
+
+//   Pokemon Energies
+  .dark,
+  .fire,
+  .ghost,
+  .poison,
+  .rock{
+          display: inline-block;
+          font-size: 0;
+            &:before{
+            content: "";
+            display: inline-block;
+            padding: 20px;
+            background-size: 100%;
+            animation: $spin;
+          }
+      }
+       .fire{
+        &:before{
+        background: $fire;
+      }
+    }
+     .dark{
+      &:before{
+      background: $dark;
+    }
+  }
+  .ghost{
+    &:before{
+    background: $ghost;
+  }
+}
+.poison{
+    &:before{
+    background: $poison;
+  }
+}
+.rock{
+    &:before{
+    background: $rock;
+  }
+}
+}
+}
