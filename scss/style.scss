@@ -60,6 +60,14 @@ img {
   }
     
 }
+
+.badge{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15%;
+    background: rgba(28, 16, 32, 0.62);
+}
 .main{
     padding-top: 4em;
     background-color: $card-color-3;
@@ -157,7 +165,7 @@ img {
     }
     .card {
       position: relative;
-      margin: 0.5rem 1rem 1rem 0;
+      margin: 0;
       background-color: transparent; 
       box-shadow: none;
       width: auto;
@@ -219,13 +227,22 @@ img {
       background: #321e36;
     }
   }
+  .abilities{
+    text-transform: uppercase;
+    font-weight: bold;
+    li{
+      font-weight: normal;
+      font-size: 14px;
+    }
+  }
     }
 //   Pokemon Energies
   .dark,
   .fire,
   .ghost,
   .poison,
-  .rock{
+  .rock,
+  .flying{
           display: inline-block;
           font-size: 0;
             &:before{
@@ -260,6 +277,11 @@ img {
     &:before{
     background: $rock;
   }
+}
+.flying{
+  &:before{
+  background: $flying;
+}
 }
 }
 }

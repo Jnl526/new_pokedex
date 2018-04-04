@@ -392,9 +392,17 @@ img {
   animation-delay: 2s;
 }
 
+.badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15%;
+  background: rgba(28, 16, 32, 0.62);
+}
+
 .main {
   padding-top: 4em;
-  background-color: rgba(28, 16, 32, 0.22);
+  background-color: rgba(137, 137, 137, 0.22);
 }
 
 #gym {
@@ -491,7 +499,7 @@ section {
 
 #pokemon_grid .card {
   position: relative;
-  margin: 0.5rem 1rem 1rem 0;
+  margin: 0;
   background-color: transparent;
   box-shadow: none;
   width: auto;
@@ -562,11 +570,22 @@ section {
   background: #321e36;
 }
 
+#pokemon_grid .card .card-reveal .abilities {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#pokemon_grid .card .card-reveal .abilities li {
+  font-weight: normal;
+  font-size: 14px;
+}
+
 #pokemon_grid .card .dark,
 #pokemon_grid .card .fire,
 #pokemon_grid .card .ghost,
 #pokemon_grid .card .poison,
-#pokemon_grid .card .rock {
+#pokemon_grid .card .rock,
+#pokemon_grid .card .flying {
   display: inline-block;
   font-size: 0;
 }
@@ -575,7 +594,8 @@ section {
 #pokemon_grid .card .fire:before,
 #pokemon_grid .card .ghost:before,
 #pokemon_grid .card .poison:before,
-#pokemon_grid .card .rock:before {
+#pokemon_grid .card .rock:before,
+#pokemon_grid .card .flying:before {
   content: "";
   display: inline-block;
   padding: 20px;
@@ -601,5 +621,9 @@ section {
 
 #pokemon_grid .card .rock:before {
   background: url(../images/energy/rock.png) no-repeat;
+}
+
+#pokemon_grid .card .flying:before {
+  background: url(../images/energy/flying.png) no-repeat;
 }
 /*# sourceMappingURL=style.css.map */
