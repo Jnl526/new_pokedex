@@ -1,4 +1,5 @@
 //Pokemon constructor containing selected pokemon data
+
 class pokeData {
     constructor(id, name, image, hp, attack, defense, abilities,types){
         this.id = id;
@@ -21,61 +22,59 @@ class pokeTrainer{
 		this.pokemon.push(a);
 	}
 }
-
-
-
+// Create new trainer
 let jan = new pokeTrainer();
-let dan = new pokeTrainer();
     console.log(jan);
-    console.log(dan);
-	
-let pokeDexOne = function(myTrainer)  {
+
+// Creating the pokedex from information collected from API
+
+let pokeDex = function(myTrainer)  {
 	
         for ( let i = 0; i < myTrainer.pokemon.length; i++) {
                 let pokeMon = myTrainer.pokemon[i],
                     // create carousel
                     newDivItem = $(`<div class='carousel-item' href='#${i}'></div>`),
-                    newDivCard = $(`<div class='card large'><div class="card-title"><p>${pokeMon.id}</p><h6>${pokeMon.name}</h6></div>`),
+                     // create poke card
+                    newDivCard = $(`<div id=${pokeMon.id} class='card large'><div class="card-title"><p>${pokeMon.id}</p><h6>${pokeMon.name}</h6></div><a><i class="activator fas fa-info-circle"></i></i></a>`),
                     newDivTypes = $(`<ul class='types'></ul>`),
                     newDivContent = $(`<div class='card-content'></div>`),
-                    newDivReveal = $(`<div class='card-reveal'><span class="card-title ">${pokeMon.name}<i class="material-icons right">close</i></span></div>`);
+                    newDivReveal = $(`<div    class='card-reveal'><div class="card-title ">${pokeMon.name}<i class="material-icons right">close</i></div></div>`),
+                    newDivAbility = $(`<ul class='abilities'><p>ABILITIES</p></ul>`);
+                    pokeeImg = $(`<div class='card-image'><img  id=${pokeMon.id} src='"  "'></div>`);
+                    pokeeImgThumb = $(`<img class="thumb" id=${pokeMon.id} src='${pokeMon.image}'><p class="num">${pokeMon.id}</p>`);
+                    pokeeStats = $(`<div class='stats'><p class="stats-title">Stats</p><ul><li class='hp'>${pokeMon.hp}<br>HP</li><li class='attack'> ${pokeMon.attack}<br>A</p><li class='defense'> ${pokeMon.defense}<br>D</li></ul></div>`);
     
                   // create types list
+
             for ( let j = 0; j < myTrainer.pokemon[i].types.length; j++){
                   let pokeeType = $(`<li class="${myTrainer.pokemon[i].types[j]}">${myTrainer.pokemon[i].types[j]}</li>`);
                 $(newDivTypes ).append(pokeeType);
                 	
             }
+                    // create abilities list
+
+            for ( let k = 0; k < myTrainer.pokemon[i].abilities.length; k++){
+                let pokeeAbility = $(`<li class="${myTrainer.pokemon[i].abilities[k]}">${myTrainer.pokemon[i].abilities[k]}</li>`);
+                $(newDivAbility).append(pokeeAbility);
                   
-                    //   pokeeName = $(``),
-                      pokeeImg = $(`<div class='card-image'><img class="activator" id=${pokeMon.id} src='"  "'></div>`);
-                      pokeeImgThumb = $(`<img class="thumb" id=${pokeMon.id} src='${pokeMon.image}'><p>${pokeMon.id}</p>`);
-                    pokeeStats = $(`<div class='stats'><p class="stats-title">Stats</p><ul><li class='hp'>${pokeMon.hp}<br>HP</li><li class='attack'> ${pokeMon.attack}<br>A</p><li class='defense'> ${pokeMon.defense}<br>D</li></ul></div>`);
-                    pokeeAbility = $(`<div class='abilities'><p>ABILITIES</p><ul id='ability'><li>${pokeMon.abilities}</li></ul></div>`);
-                       
-                        // pokeeAttack = $("<div class='attack'><h6>" + pokeMon.attack + "</h6></div>");
-                        // pokeeDefense = $("<div class='defense'><h6>" + pokeMon.defense + "</h6></div>");
-    
+          }  
+                    
             //Create individual pokemon information
             $('#pokemon_grid .carousel ').append(newDivItem);
             $(newDivItem).append(newDivCard);
             $(newDivCard).append(newDivTypes);
             $(newDivReveal).append(pokeeImgThumb);
             $(newDivCard).append(pokeeImg).append(newDivContent).append(newDivReveal);
-            
-            $(newDivReveal).append(pokeeStats).append(pokeeAbility);
+            $(newDivReveal).append(pokeeStats).append(newDivAbility);
         
-        
-            
+            // Initializing materialize js
             $('.carousel').carousel();	
-            $('.dropdown-trigger').dropdown();	
-            //Replace selected pokemon images
-            $('#59').attr("src","images/pokemon/arcanine1.png");
-            $('#228').attr("src","images/pokemon/houndour2.png");
-            $('#262').attr("src","images/pokemon/mightyena.png");
-            $('#452').attr("src","images/pokemon/drapion.png");
-            $('#142').attr("src","images/pokemon/aerodactyl.png");
-            $('#429').attr("src","images/pokemon/mismagius.png");
+            // $('.dropdown-trigger').dropdown();	
+            
+            // Replace selected pokemon images
+            $('#59, #59.thumb').attr("src","images/pokemon/arcanine1.png");
+            $('#228, #228.thumb').attr("src","images/pokemon/houndour2.png");
+            $('#262, #262.thumb').attr("src","images/pokemon/mightyena.png");  
         }	 
     }
 
@@ -87,7 +86,7 @@ function getApokemon(id, pokeTrainer){
 	method: 'GET',
 	dataType: 'JSON',
 	success: function(data){
-		// console.log(data);
+		console.log(data);
 		let id = data.id,
 			name = data.name,
 			image = data.sprites.front_default,
@@ -105,10 +104,8 @@ function getApokemon(id, pokeTrainer){
 			 types.push( data.types[i].type.name);
 		}  
 		
-		 let poke = new pokeData(id,name,image,hp,attack,defense,abilities,types);  
-		
+		 let poke = new pokeData(id,name,image,hp,attack,defense,abilities,types); 
          pokeTrainer.addPokemon(poke);
-
 },
         error: function(error){
           console.log(error);
@@ -117,10 +114,10 @@ function getApokemon(id, pokeTrainer){
 };
 
 // Get specfic Pokemon to individual trainers
-$.when(getApokemon(228, jan), getApokemon(59,jan), getApokemon(262, jan), getApokemon(142, dan), getApokemon(452, dan),getApokemon(429, dan)).done(function( data ) {
+$.when(getApokemon(228, jan), getApokemon(59,jan), getApokemon(262, jan)).done(function( data ) {
     console.log('IM DONE');
-    pokeDexOne(jan);
-     pokeDexOne(dan);
+    pokeDex(jan);
+    
 });
 
 // Loading Page Animation Fade
@@ -128,8 +125,8 @@ $(window).load(function(){
     setTimeout(function(){ $('#loading_page').delay(3500).fadeOut() }, 1000);
   });
 
-
-
-
-    
-	
+// Search
+$('form').on('submit',function(e){
+    e.preventDefault();
+    let findName = $('input[type=search]').val();
+});

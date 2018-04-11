@@ -3,6 +3,7 @@
 $card-color-1: #ef843c;
 $card-color-2: rgba(28, 16, 32, 0.53);
 $card-color-3:  rgba(137, 137, 137, 0.22);
+$bkgradient: linear-gradient(to bottom, rgba(153,219,254,1) 0%,rgba(255,255,255,1) 77%);
 .red{
   background-color:  #e33118 !important;
 }
@@ -14,9 +15,53 @@ $card-color-3:  rgba(137, 137, 137, 0.22);
   font-size: 15px;
   font-weight: 300;
   letter-spacing: 2px;
-  background-color: rgba(28, 16, 32, 0.53);
+  background-color: #9fd9f9;
   padding: 1px 0 10px;
-  border: 1px solid rgba(28, 16, 32, 0.53);
   border-radius: 30px;
+  p{
+    -webkit-margin-after: 0;
+}
+}
+#\35 9 {
+  .card-reveal {
+    border-bottom: 60px solid #e85d00;
+    .card-title,
+    .stats-title{
+  background-color: #e85d00;
+  }
+ 
+    .hp {
+      background: #f77b28;
+  }
+  .attack {
+    background-color: #e85d00;
+}
+.defense {
+  background-color: #c55002;
+}
+  
+  
+ }
 }
 
+#\32 28 {
+  .card-reveal {
+    border-bottom: 60px solid #485157;
+    .card-title,
+    .stats-title{
+  background-color: #485157;
+  }
+ 
+    .hp {
+      background: #666f75;
+  }
+  .attack {
+    background-color: #485157;
+}
+.defense {
+  background-color: #353b40;
+}
+  
+  
+ }
+}

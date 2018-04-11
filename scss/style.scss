@@ -3,6 +3,7 @@
 @import 'partials/mediaqueries';
 @import 'partials/grid';
 @import 'partials/animations';
+@import 'partials/fonts';
 
 body,
 html {
@@ -40,47 +41,41 @@ img {
     z-index: 1;
   overflow: hidden;
   // background: rgb(153,219,254);
-  background: -moz-linear-gradient(top, rgba(153,219,254,1) 0%, rgba(255,255,255,1) 77%);
-  background: -webkit-linear-gradient(top, rgba(153,219,254,1) 0%,rgba(255,255,255,1) 77%);
-  background: linear-gradient(to bottom, rgba(153,219,254,1) 0%,rgba(255,255,255,1) 77%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99dbfe', endColorstr='#ffffff',GradientType=0 );
+  background: $bkgradient;
   z-index: 1;
   .logo-wrapper{
+    text-align: center;
+    width: 60%;
       .logo {
         position: absolute;
-        bottom: 61px;
+        bottom: 38px;
         z-index: 1;
-        width: 200px;
-        right: 0;
-        transform: translateX(-25px) scaleX(0);      
-        transform-origin: left;
-        animation: $reveal;
-        animation-delay: $delay;
+        width: 40%;
+        margin: 0 auto;
+        animation: fadeIn 3.5s cubic-bezier(0, 0.03, 0, 0.02);
+         
     }
   }
     
 }
 
-.badge{
+header{
     position: absolute;
     top: 0;
     left: 0;
-    width: 15%;
-    background: rgba(28, 16, 32, 0.62);
-}
-.main{
-    padding-top: 4em;
-    background-color: $card-color-3;
-  }
-  #gym{
-   background: $gymbk;
-   background-size: cover;
-   background-position: center;
-    .img-wrapper{
-      opacity: 0;
+    transform: translate(25px,20px);
+    .logo{
+      width: 200px;
     }
+}
+.main {
+  /* padding-top: 4em; */
+  background: url(../images/grass.jpg) no-repeat center;
+  background-size: cover;
+}
   
-  }
+  
+  
   section {
     width: 100%;
     height: 100vh;
@@ -161,47 +156,71 @@ img {
   #pokemon_grid {
     text-align: center;
     .carousel {
-        height: 600px;
+        height: 684px;
+        .carousel-item {
+          top: -5%; 
+      }
     }
+  }
     .card {
       position: relative;
       margin: 0;
       background-color: transparent; 
       box-shadow: none;
-      width: auto;
+      width: 300px;
       display: inline-block;
+      .activator {
+        position: absolute;
+        bottom: 44px;
+        height: 30px;
+        width: 30px;
+        right: 0;
+        z-index: 1;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ffe215;
+      }
       
-      .card-title {
-        color: #fff;
-        font-size: 15px;
-        font-weight: 300;
-        letter-spacing: 2px;
-        background-color: $card-color-2;
-        padding: 1px 0 10px;
-    }
+    .card-image {
+      max-height: 60%;
+       overflow: visible;
+    //    img {
+    //     transform: scale(1.7);
+    // }
+  }
+  
     .card-reveal {
       color: #000;
       font-size: 15px;
       font-weight: 300;
       letter-spacing: 2px;
       padding: 0;
+      border-bottom: 60px solid rgba(28, 16, 32, 0.93);
+      
       .card-title{
         text-transform: uppercase;
         background-color: rgba(28, 16, 32, 0.93);
         padding: 5px 10px 10px;
         border: none;
         border-radius: 0;
+        i.right {
+          float: right;
+          margin: 7px 15px;
+      }
        }
+       
       img.thumb {
         display: flex;
         float: left;
-        width: 64%;
+        width: 50%;
         vertical-align: top;
         position: relative;
         margin-top: -26px;
         padding: 1px 0;
     }
+    
     .stats{
+      padding-top: 20px;
        .stats-title,
        .dropdown-trigger{
         background-color: rgba(28, 16, 32, 0.93);
@@ -210,6 +229,9 @@ img {
         color: #fff;
         text-transform: uppercase;
     }
+    ul{
+      
+        padding-top: 10px;
     li {
       display: inline-block;
     text-align: center;
@@ -217,6 +239,8 @@ img {
     color: #fff;
     height: 62px;
     }
+  }
+    
     .hp{
       background: #695774;
     }
@@ -236,6 +260,7 @@ img {
     }
   }
     }
+    
 //   Pokemon Energies
   .dark,
   .fire,
@@ -284,4 +309,30 @@ img {
 }
 }
 }
+.input-field{
+  width: 50%;
+  margin: 0 auto;
+  background-color: rgba(34, 28, 19, 0.56);
+  border-bottom: none;
+  border-radius: 5px;
+  input[type=search]+.label-icon {
+    -webkit-transform: none;
+    transform: none;
+    left: 1rem;
+    top: 12px;
+  }
+  input[type=search]{
+    border: none;
+    padding-left: 4rem;
+    width: calc(100% - 4rem);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    ~ .material-icons{
+      top: 11px;
+      font-size: 1.6rem;
+  }
+  
+    
+  }
 }
+
